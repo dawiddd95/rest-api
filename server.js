@@ -28,3 +28,5 @@ app.use(updateTaskRoute);
 
 
 app.listen(5000, () => console.log('Server Started'))
+
+export default app;

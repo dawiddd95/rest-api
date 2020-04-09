@@ -14,7 +14,8 @@ router.patch('/api/v1.0.0/tasks/:id', taskUpdateSchema, getTask, async (req, res
    if (!errors.isEmpty()) return res.status(422).jsonp(errors.array());
 
    try {
-      const updatedTask = await models.Task.update({title, description, done}, {where: {id} })
+      await models.Task.update({title, description, done}, {where: {id} })
+      const updatedTask = await models.Task.findOne({ where: {id} })
       res.json(updatedTask)
    } catch (err) {
       res.status(400).json({ message: err.message })
